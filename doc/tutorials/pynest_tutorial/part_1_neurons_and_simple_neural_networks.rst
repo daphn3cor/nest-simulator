@@ -121,7 +121,7 @@ or return a list of ids (see `command overview`_). Thus, it is
 easy to apply functions to large sets of nodes with a single function
 call.
 
-After having imported NEST and also the Pylab interface to Matplotlib [4]_,
+After having imported NEST and Matplotlib [4]_,
 which we will use to display the results, we can start reating nodes.
 As a first example, we will create a neuron of type
 ``iaf_psc_alpha``. This neuron is an integrate-and-fire neuron with
@@ -130,8 +130,7 @@ ids of all the created neurons, in this case only one, which we store in
 a variable called ``neuron``.
 
 ::
-
-    import pylab
+    import matplotlib.pyplot as plt
     import nest
     neuron = nest.Create("iaf_psc_alpha")
 
@@ -295,27 +294,21 @@ understanding of its structure, and then in the next step extract the
 dictionary ``events``, and so on.
 
 Now we are ready to display the data in a figure. To this end, we make
-use of ``pylab``.
+use of matplotlib, running ``plt.plot`` produces the plot. If you are 
+working in a Jupyter notebook, the plot should be displayed automatically.
+Otherwise, use ``plt.show()`` to display the plot.
 
 ::
 
-    import pylab
-    pylab.figure(1)
-    pylab.plot(ts, Vms)
-
-The second line opens a figure (with the number 1), and the third line
-actually produces the plot. You can’t see it yet because we have not
-used ``pylab.show()``. Before we do that, we proceed analogously to
-obtain and display the spikes from the spike detector.
+    import matplotlib.pyplot as plt
+    plt.plot(ts, Vms);
 
 ::
 
     dSD = nest.GetStatus(spikedetector,keys="events")[0]
     evs = dSD["senders"]
     ts = dSD["times"]
-    pylab.figure(2)
-    pylab.plot(ts, evs, ".")
-    pylab.show()
+    plt.plot(ts, evs, ".")
 
 Here we extract the events more concisely by using the optional keyword
 argument ``keys`` to ``GetStatus``. This extracts the dictionary element
@@ -354,13 +347,12 @@ lines.
 
 ::
 
-    pylab.figure(2)
     Vms1 = dmm["events"]["V_m"][::2] # start at index 0: till the end: each second entry
     ts1 = dmm["events"]["times"][::2]
-    pylab.plot(ts1, Vms1)
+    plt.plot(ts1, Vms1)
     Vms2 = dmm["events"]["V_m"][1::2] # start at index 1: till the end: each second entry
     ts2 = dmm["events"]["times"][1::2]
-    pylab.plot(ts2, Vms2)
+    plt.plot(ts2, Vms2)
 
 Additional information can be found at
 http://docs.scipy.org/doc/numpy-1.10.0/reference/arrays.indexing.html.
@@ -447,7 +439,7 @@ a constant input current, and add a second neuron.
 
 ::
 
-    import pylab
+    import matplotlib.pyplot as plt
     import nest
     neuron1 = nest.Create("iaf_psc_alpha")
     nest.SetStatus(neuron1, {"I_e": 376.0})
