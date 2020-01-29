@@ -91,14 +91,14 @@ prompted for.
 
     dir(nest)
 
-One such command is ``nest.Models()`` or in ipython ``nest.Models?``, which will return a list of all
+One such command is ``nest.Models()`` , which will return a list of all
 the available models you can use. If you want to obtain more information
-about a particular command, you may use Python’s standard help system.
+about a particular command, you may use Python’s standard help system. 
 
-This will return the help text (docstring) explaining the use of this
-particular function. There is a help system within NEST as well. You can
-open the help pages in a browser using ``nest.helpdesk()`` and you can
-get the help page for a particular object using ``nest.help(object)``.
+``nest.Models?`` will return the help text (docstring) explaining the use 
+of this particular function. There is a help system within NEST as well. 
+You can open the help pages in a browser using ``nest.helpdesk()`` and you 
+can get the help page for a particular object using ``nest.help(object)``.
 
 Creating Nodes
 --------------
